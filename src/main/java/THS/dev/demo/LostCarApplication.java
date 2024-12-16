@@ -11,5 +11,4 @@ public class LostCarApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(LostCarApplication.class, args);
 	}
-
 }
