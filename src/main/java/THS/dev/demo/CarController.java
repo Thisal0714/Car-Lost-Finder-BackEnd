@@ -21,7 +21,7 @@ public class CarController {
     }
 
     @GetMapping("/{id}")
-        public ResponseEntity<Optional<Cars>> getSingleCar(@PathVariable ObjectId id){
-                return new ResponseEntity<Optional<Cars>>(carService.SingleCar(id),HttpStatus.OK);
-        }
+    public ResponseEntity<Optional<Cars>> getSingleCar(@PathVariable ObjectId id){
+        return new ResponseEntity<Optional<Cars>>(carService.SingleCar(id),HttpStatus.OK);
+    }
 }
