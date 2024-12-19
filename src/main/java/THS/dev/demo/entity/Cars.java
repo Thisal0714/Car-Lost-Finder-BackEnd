@@ -1,4 +1,4 @@
-package THS.dev.demo;
+package THS.dev.demo.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
