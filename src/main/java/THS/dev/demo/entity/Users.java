@@ -18,4 +18,6 @@ public class Users {
     private String address;
     private String email;
     private String mNumber;
+    private String sex;
+    private String occupation;
 }
