@@ -2,9 +2,6 @@ package THS.dev.demo.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-
-import javax.annotation.processing.Generated;
-
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
