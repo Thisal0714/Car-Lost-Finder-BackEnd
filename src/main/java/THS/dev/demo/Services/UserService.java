@@ -1,5 +1,6 @@
 package THS.dev.demo.Services;
 
+import org.bson.types.ObjectId;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,7 +22,7 @@ public class UserService {
     private ModelMapper modelMapper;
 
     public String registerUser(UserDto userDto){
-        if (userRepository.existsById(userDto.getUserId())) {
+        if (userRepository.existsById(userDto.getId())) {
             return Lists.RSP_DUPLICATED;
         }else{
             userRepository.save(modelMapper.map(userDto, Users.class));
