@@ -1,6 +1,5 @@
 package CarFinder.dev.LostCarFinder.Service;
 
-
 import CarFinder.dev.LostCarFinder.Repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -12,10 +11,9 @@ import org.springframework.stereotype.Service;
 public class OurUserDetailsService implements UserDetailsService {
 
     @Autowired
-    private UserRepository userRepository;
-
+    private UserRepository usersRepo;
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return userRepository.findByEmail(username).orElseThrow();
+        return usersRepo.findByEmail(username).orElseThrow();
     }
 }

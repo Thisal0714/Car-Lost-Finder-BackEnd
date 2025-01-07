@@ -1,7 +1,6 @@
 package CarFinder.dev.LostCarFinder.Configuration;
 
 
-import CarFinder.dev.LostCarFinder.Configuration.JWTAuthFilter;
 import CarFinder.dev.LostCarFinder.Service.OurUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -22,40 +21,39 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfiguration {
-    @Autowired
-    private OurUserDetailsService ourUserDetailsService;
+public class SecurityConfig {
 
     @Autowired
+    private OurUserDetailsService ourUserDetailsService;
+    @Autowired
     private JWTAuthFilter jwtAuthFilter;
+
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception{
         httpSecurity.csrf(AbstractHttpConfigurer::disable)
                 .cors(Customizer.withDefaults())
-                .authorizeHttpRequests(request->request.requestMatchers("/auth/**","/public/**").permitAll()
+                .authorizeHttpRequests(request-> request.requestMatchers("/auth/**", "/public/**").permitAll()
                         .requestMatchers("/admin/**").hasAnyAuthority("ADMIN")
                         .requestMatchers("/user/**").hasAnyAuthority("USER")
-                        .requestMatchers("/adminuser/**").hasAnyAuthority("ADMIN","USER")
+                        .requestMatchers("/adminuser/**").hasAnyAuthority("ADMIN", "USER")
                         .anyRequest().authenticated())
                 .sessionManagement(manager->manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                        .authenticationProvider(authenticationProvider()).addFilterBefore(
-                            jwtAuthFilter, UsernamePasswordAuthenticationFilter.class
-                        );
+                .authenticationProvider(authenticationProvider()).addFilterBefore(
+                        jwtAuthFilter, UsernamePasswordAuthenticationFilter.class
+                );
         return httpSecurity.build();
-
     }
-
     @Bean
     public AuthenticationProvider authenticationProvider(){
-    DaoAuthenticationProvider daoAuthenticationProvider=new DaoAuthenticationProvider();
-    daoAuthenticationProvider.setUserDetailsService(ourUserDetailsService);
-    daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
-    return daoAuthenticationProvider;
+        DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
+        daoAuthenticationProvider.setUserDetailsService(ourUserDetailsService);
+        daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
+        return daoAuthenticationProvider;
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder() {
+    public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
     }
 

@@ -1,54 +1,43 @@
 package CarFinder.dev.LostCarFinder.Entity;
 
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Generated;
-import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
+import nonapi.io.github.classgraph.json.Id;
+import org.springframework.data.mongodb.core.annotation.Collation;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
-@NoArgsConstructor
-@AllArgsConstructor
-@Data
+
 @Document(collection = "Users")
+@Data
 public class User implements UserDetails {
 
     @Id
-
-    private String userId;
-    private String username;
-    private String Email;
-    private String address;
-    private String occupation;
-    private String sex;
-    private String mNumber;
+    private String id;
+    private String email;
+    private String name;
     private String password;
+    private String city;
     private String role;
 
-    public User(String username, String email, String encode) {
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority(role));
     }
 
-    public String getEmail() {
-        return Email;
+    @Override
+    public String getPassword() {
+        return password;
     }
 
-    public void setEmail(String email) {
-        Email = email;
-    }
-
-
+    @Override
     public String getUsername() {
-        return username;
+        return email;
     }
 
     @Override
@@ -71,72 +60,47 @@ public class User implements UserDetails {
         return true;
     }
 
-    public String getRole() {
-        return role;
+    public String getId() {
+        return id;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(role));
+    public String getEmail() {
+        return email;
     }
 
-    public String getPassword() {
-        return password;
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void setPassword(String password) {
         this.password = password;
     }
 
-    public String getUserId() {
-        return userId;
+    public String getCity() {
+        return city;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setCity(String city) {
+        this.city = city;
     }
 
-    public String getName() {
-        return username;
+    public String getRole() {
+        return role;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getOccupation() {
-        return occupation;
-    }
-
-    public void setOccupation(String occupation) {
-        this.occupation = occupation;
-    }
-
-    public String getSex() {
-        return sex;
-    }
-
-    public void setSex(String sex) {
-        this.sex = sex;
-    }
-
-    public String getmNumber() {
-        return mNumber;
-    }
-
-    public void setmNumber(String mNumber) {
-        this.mNumber = mNumber;
+    public void setRole(String role) {
+        this.role = role;
     }
 }
