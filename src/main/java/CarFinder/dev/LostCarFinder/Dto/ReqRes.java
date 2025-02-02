@@ -25,10 +25,27 @@ public class ReqRes {
     private String email;
     private String job;
     private String nic;
+    private String sex;
+    private String phone;
     private String password;
     private User user;
     private List<User> ourUsersList;
 
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 
     public String getNic() {
         return nic;

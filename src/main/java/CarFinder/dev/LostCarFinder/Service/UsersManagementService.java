@@ -38,6 +38,8 @@ public class UsersManagementService {
             ourUser.setName(registrationRequest.getName());
             ourUser.setJob(registrationRequest.getJob());
             ourUser.setNic(registrationRequest.getNic());
+            ourUser.setSex(registrationRequest.getSex());
+            ourUser.setPhone(registrationRequest.getPhone());
             ourUser.setPassword(passwordEncoder.encode(registrationRequest.getPassword()));
             User ourUsersResult = usersRepo.save(ourUser);
             if (!ourUsersResult.getId().isEmpty()) {
