@@ -5,11 +5,9 @@ import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@AllArgsConstructor
-@NoArgsConstructor
+
 @Data
-@Getter
-@Setter
+
 @Document(collection = "Cars")
 public class Car {
 
@@ -32,7 +30,7 @@ public class Car {
     }
 
     public String getOwnerName() {
-        return ownerName;
+        return this.ownerName;
     }
 
     public void setOwnerName(String ownername) {
@@ -40,7 +38,7 @@ public class Car {
     }
 
     public String getBrand() {
-        return brand;
+        return this.brand;
     }
 
     public void setBrand(String brand) {
@@ -48,7 +46,7 @@ public class Car {
     }
 
     public String getModel() {
-        return model;
+        return this.model;
     }
 
     public void setModel(String model) {
@@ -56,7 +54,7 @@ public class Car {
     }
 
     public String getProducedYear() {
-        return producedYear;
+        return this.producedYear;
     }
 
     public void setProducedYear(String producedYear) {
@@ -64,7 +62,7 @@ public class Car {
     }
 
     public String getTransmission() {
-        return transmission;
+        return this.transmission;
     }
 
     public void setTransmission(String transmission) {
@@ -72,10 +70,23 @@ public class Car {
     }
 
     public String getRegisteredYear() {
-        return registeredYear;
+        return this.registeredYear;
     }
 
     public void setRegisteredYear(String registeredYear) {
         this.registeredYear = registeredYear;
+    }
+
+    @Override
+    public String toString() {
+        return "Car{" +
+                "ownerId='" + ownerId + '\'' +
+                ", ownerName='" + ownerName + '\'' +
+                ", brand='" + brand + '\'' +
+                ", model='" + model + '\'' +
+                ", producedYear='" + producedYear + '\'' +
+                ", transmission='" + transmission + '\'' +
+                ", registeredYear='" + registeredYear + '\'' +
+                '}';
     }
 }

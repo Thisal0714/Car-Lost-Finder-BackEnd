@@ -1,14 +1,21 @@
 package CarFinder.dev.LostCarFinder.Dto;
 
 
+import CarFinder.dev.LostCarFinder.Entity.Car;
+import CarFinder.dev.LostCarFinder.Entity.User;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@AllArgsConstructor
-@NoArgsConstructor
 @Data
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class CarDto {
+    private int statusCode;
+    private String error;
+    private String message;
     private String ownerId;
     private String ownerName;
     private String brand;
@@ -16,6 +23,36 @@ public class CarDto {
     private String producedYear;
     private String transmission;
     private String registeredYear;
+    private Car car;
+
+
+    public int getStatusCode() {
+        return statusCode;
+    }
+
+    public void setStatusCode(int statusCode) {
+        this.statusCode = statusCode;
+    }
+
+    public String getError() {
+        return error;
+    }
+
+    public void setError(String error) {
+        this.error = error;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public Car getCar() {
+        return car;
+    }
 
     public String getOwnerId() {
         return ownerId;
@@ -69,6 +106,10 @@ public class CarDto {
         return registeredYear;
     }
 
+    public void setCar(Car car) {
+        this.car = car;
+    }
+    
     public void setRegisteredYear(String registeredYear) {
         this.registeredYear = registeredYear;
     }
