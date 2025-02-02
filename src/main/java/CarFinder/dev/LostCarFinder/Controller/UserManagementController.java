@@ -36,7 +36,7 @@ public class UserManagementController {
 
     }
 
-    @GetMapping("/admin/get-users/{userId}")
+    @GetMapping("/admin/get-user/{userId}")
     public ResponseEntity<ReqRes> getUSerByID(@PathVariable Integer userId){
         return ResponseEntity.ok(usersManagementService.getUserById(userId));
 

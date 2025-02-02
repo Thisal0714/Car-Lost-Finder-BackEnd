@@ -15,7 +15,9 @@ import java.util.List;
 
 @Document(collection = "Users")
 @Data
+
 public class User implements UserDetails {
+
 
     @Id
     private String id;
@@ -23,7 +25,28 @@ public class User implements UserDetails {
     private String name;
     private String password;
     private String city;
-    private String role;
+    private String role = "USER";
+    private String job;
+    private String nic;
+    private String sex;
+    private String phone;
+
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -102,5 +125,37 @@ public class User implements UserDetails {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public String getJob() {
+        return job;
+    }
+
+    public String getNic() {
+        return nic;
+    }
+
+    public void setJob(String job) {
+        this.job = job;
+    }
+
+    public void setNic(String nic) {
+        this.nic = nic;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id='" + id + '\'' +
+                ", email='" + email + '\'' +
+                ", name='" + name + '\'' +
+                ", password='" + password + '\'' +
+                ", city='" + city + '\'' +
+                ", role='" + role + '\'' +
+                ", job='" + job + '\'' +
+                ", nic='" + nic + '\'' +
+                ", sex='" + sex + '\'' +
+                ", phone='" + phone + '\'' +
+                '}';
     }
 }

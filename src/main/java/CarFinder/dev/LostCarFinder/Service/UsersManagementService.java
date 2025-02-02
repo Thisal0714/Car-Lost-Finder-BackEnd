@@ -36,6 +36,8 @@ public class UsersManagementService {
             ourUser.setCity(registrationRequest.getCity());
             ourUser.setRole(registrationRequest.getRole());
             ourUser.setName(registrationRequest.getName());
+            ourUser.setJob(registrationRequest.getJob());
+            ourUser.setNic(registrationRequest.getNic());
             ourUser.setPassword(passwordEncoder.encode(registrationRequest.getPassword()));
             User ourUsersResult = usersRepo.save(ourUser);
             if (!ourUsersResult.getId().isEmpty()) {
@@ -63,7 +65,6 @@ public class UsersManagementService {
             var refreshToken = jwtUtils.generateRefreshToken(new HashMap<>(), user);
             response.setStatusCode(200);
             response.setToken(jwt);
-            response.setRole(user.getRole());
             response.setRole(user.getRole());
             response.setRefreshToken(refreshToken);
             response.setExpirationTime("24Hrs");
@@ -201,6 +202,7 @@ public class UsersManagementService {
                 reqRes.setUser(userOptional.get());
                 reqRes.setStatusCode(200);
                 reqRes.setMessage("successful");
+
             } else {
                 reqRes.setStatusCode(404);
                 reqRes.setMessage("User not found for update");

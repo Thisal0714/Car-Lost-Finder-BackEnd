@@ -3,7 +3,7 @@ package CarFinder.dev.LostCarFinder.Controller;
 
 import CarFinder.dev.LostCarFinder.Dto.GarageDto;
 import CarFinder.dev.LostCarFinder.Dto.ResponseDto;
-import CarFinder.dev.LostCarFinder.Dto.UserDto;
+
 import CarFinder.dev.LostCarFinder.Lists.Lists;
 import CarFinder.dev.LostCarFinder.Service.GarageService;
 import org.springframework.beans.factory.annotation.Autowired;

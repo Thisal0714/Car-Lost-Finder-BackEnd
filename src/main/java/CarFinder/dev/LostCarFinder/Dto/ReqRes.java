@@ -23,9 +23,28 @@ public class ReqRes {
     private String city;
     private String role;
     private String email;
+    private String job;
+    private String nic;
     private String password;
     private User user;
     private List<User> ourUsersList;
+
+
+    public String getNic() {
+        return nic;
+    }
+
+    public void setNic(String nic) {
+        this.nic = nic;
+    }
+
+    public String getJob() {
+        return job;
+    }
+
+    public void setJob(String job) {
+        this.job = job;
+    }
 
     public int getStatusCode() {
         return statusCode;
