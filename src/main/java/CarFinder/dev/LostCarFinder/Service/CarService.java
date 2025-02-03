@@ -2,13 +2,18 @@ package CarFinder.dev.LostCarFinder.Service;
 
 
 import CarFinder.dev.LostCarFinder.Dto.CarDto;
+import CarFinder.dev.LostCarFinder.Dto.ReqRes;
 import CarFinder.dev.LostCarFinder.Entity.Car;
+import CarFinder.dev.LostCarFinder.Entity.User;
 import CarFinder.dev.LostCarFinder.Lists.Lists;
 import CarFinder.dev.LostCarFinder.Repositories.CarRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 
@@ -36,13 +41,7 @@ public class CarService {
 
             // Manually map the fields to the CarDto response
             resp.setCar(ourCarResult);
-            resp.setOwnerId(ourCarResult.getOwnerId());
-            resp.setOwnerName(ourCarResult.getOwnerName());
-            resp.setBrand(ourCarResult.getBrand());
-            resp.setModel(ourCarResult.getModel());
-            resp.setProducedYear(ourCarResult.getProducedYear());
-            resp.setRegisteredYear(ourCarResult.getRegisteredYear());
-            resp.setTransmission(ourCarResult.getTransmission());
+
 
             // Set the success message and status code
             resp.setMessage("Car Saved Successfully");
@@ -54,6 +53,34 @@ public class CarService {
             resp.setError(e.getMessage());
         }
         return resp;
+    }
+
+
+    public CarDto getCarsByOwnerId(String ownerId) {
+        CarDto carDto = new CarDto();
+        try {
+            List<Car> cars = carRepository.findByOwnerId(ownerId);
+
+            if (cars.isEmpty()) {
+                throw new NoSuchElementException("No cars found for owner with ID '" + ownerId + "'");
+            }
+
+            carDto.setCars(cars);
+            carDto.setStatusCode(200);
+            carDto.setMessage("Cars for owner ID '" + ownerId + "' found successfully");
+
+        } catch (NoSuchElementException e) {
+            carDto.setStatusCode(404);
+            carDto.setError("Not Found");
+            carDto.setMessage(e.getMessage());
+
+        } catch (Exception e) {
+            carDto.setStatusCode(500);
+            carDto.setError("Internal Server Error");
+            carDto.setMessage("An unexpected error occurred: " + e.getMessage());
+        }
+
+        return carDto;
     }
 
 }

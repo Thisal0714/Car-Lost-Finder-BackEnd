@@ -2,16 +2,14 @@ package CarFinder.dev.LostCarFinder.Controller;
 
 
 import CarFinder.dev.LostCarFinder.Dto.CarDto;
+import CarFinder.dev.LostCarFinder.Dto.ReqRes;
 import CarFinder.dev.LostCarFinder.Dto.ResponseDto;
 import CarFinder.dev.LostCarFinder.Lists.Lists;
 import CarFinder.dev.LostCarFinder.Service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 
@@ -24,4 +22,19 @@ public class CarController {
     public ResponseEntity<CarDto> registerCar(@RequestBody CarDto carDto){
         return ResponseEntity.ok(carService.registerCar(carDto));
     }
+
+    @GetMapping("/get-carr/{ownerId}")
+
+    public ResponseEntity<CarDto> getCarsByOwnerId(@PathVariable String ownerId) {
+        CarDto carDto = carService.getCarsByOwnerId(ownerId);
+
+        if (carDto.getStatusCode() == 200) {
+            return ResponseEntity.ok(carDto);
+        } else if (carDto.getStatusCode() == 404) {
+            return ResponseEntity.status(404).body(carDto);
+        } else {
+            return ResponseEntity.status(500).body(carDto);
+        }
+    }
+
 }

@@ -11,7 +11,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "Cars")
 public class Car {
 
-    @Id
+
     private String ownerId;
     private String ownerName;
     private String brand;
