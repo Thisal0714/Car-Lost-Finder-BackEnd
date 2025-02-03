@@ -25,6 +25,8 @@ public class CarDto {
     private String producedYear;
     private String transmission;
     private String registeredYear;
+    private String vehicleNumber;
+    private String status;
     private Car car;
     private List<Car> cars;
 
@@ -122,5 +124,21 @@ public class CarDto {
     
     public void setRegisteredYear(String registeredYear) {
         this.registeredYear = registeredYear;
+    }
+
+    public String getVehicleNumber() {
+        return vehicleNumber;
+    }
+
+    public void setVehicleNumber(String vehicleNumber) {
+        this.vehicleNumber = vehicleNumber;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

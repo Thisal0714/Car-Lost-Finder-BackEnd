@@ -35,6 +35,8 @@ public class CarService {
             ourCar.setProducedYear(registrationRequest.getProducedYear());
             ourCar.setRegisteredYear(registrationRequest.getRegisteredYear());
             ourCar.setTransmission(registrationRequest.getTransmission());
+            ourCar.setVehicleNumber(registrationRequest.getVehicleNumber());
+            ourCar.setStatus(registrationRequest.getStatus());
 
             // Save the car entity to the repository
             Car ourCarResult = carRepository.save(ourCar);

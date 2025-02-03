@@ -19,7 +19,25 @@ public class Car {
     private String producedYear;
     private String transmission;
     private String registeredYear;
+    private String vehicleNumber;
+    private String status;
 
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = "ACTIVE";
+    }
+
+    public String getVehicleNumber() {
+        return vehicleNumber;
+    }
+
+    public void setVehicleNumber(String vehicleNumber) {
+        this.vehicleNumber = vehicleNumber;
+    }
 
     public String getOwnerId() {
         return ownerId;
@@ -87,6 +105,8 @@ public class Car {
                 ", producedYear='" + producedYear + '\'' +
                 ", transmission='" + transmission + '\'' +
                 ", registeredYear='" + registeredYear + '\'' +
+                ", vehicleNumber='" + vehicleNumber + '\'' +
+                ", status='" + status + '\'' +
                 '}';
     }
 }
