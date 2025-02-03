@@ -129,7 +129,7 @@ public class UsersManagementService {
     }
 
 
-    public ReqRes getUserById(Integer id) {
+    public ReqRes getUserById(String id) {
         ReqRes reqRes = new ReqRes();
         try {
             User usersById = usersRepo.findById(id).orElseThrow(() -> new RuntimeException("User Not found"));
@@ -144,7 +144,7 @@ public class UsersManagementService {
     }
 
 
-    public ReqRes deleteUser(Integer userId) {
+    public ReqRes deleteUser(String userId) {
         ReqRes reqRes = new ReqRes();
         try {
             Optional<User> userOptional = usersRepo.findById(userId);
@@ -163,7 +163,7 @@ public class UsersManagementService {
         return reqRes;
     }
 
-    public ReqRes updateUser(Integer userId, User updatedUser) {
+    public ReqRes updateUser(String userId, User updatedUser) {
         ReqRes reqRes = new ReqRes();
         try {
             Optional<User> userOptional = usersRepo.findById(userId);

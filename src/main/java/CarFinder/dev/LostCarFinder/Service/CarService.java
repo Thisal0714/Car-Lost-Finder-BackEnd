@@ -79,7 +79,7 @@ public class CarService {
             carDto.setError("Internal Server Error");
             carDto.setMessage("An unexpected error occurred: " + e.getMessage());
         }
-
+        System.out.println(carDto);
         return carDto;
     }
 
