@@ -26,7 +26,6 @@ public class CarService {
     public CarDto registerCar(CarDto registrationRequest){
         CarDto resp = new CarDto();
         try{
-            // Create a new Car entity from the CarDto request
             Car ourCar = new Car();
             ourCar.setOwnerId(registrationRequest.getOwnerId());
             ourCar.setOwnerName(registrationRequest.getOwnerName());

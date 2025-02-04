@@ -39,6 +39,8 @@ public class SecurityConfig {
                         .requestMatchers("/adminuser/**").hasAnyAuthority("ADMIN", "USER")
                         .requestMatchers("/registerCar").permitAll()
                         .requestMatchers("/get-carr/{ownerId}").permitAll()
+                        .requestMatchers("/addReview").permitAll()
+                        .requestMatchers("/getAllReviews").permitAll()
                         .anyRequest().authenticated())
                 .sessionManagement(manager->manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider()).addFilterBefore(
