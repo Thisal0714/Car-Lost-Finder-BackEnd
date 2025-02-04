@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Service
 
@@ -82,6 +83,28 @@ public class CarService {
             carDto.setMessage("An unexpected error occurred: " + e.getMessage());
         }
         System.out.println(carDto);
+        return carDto;
+    }
+    public CarDto updateCar(String vehicleNumber, Car updatedCar) {
+        CarDto carDto = new CarDto();;
+        try {
+            Optional<Car> carOptional = carRepository.findByVehicleNumber(vehicleNumber);
+            if (carOptional.isPresent()) {
+                Car existingCar = carOptional.get();
+                existingCar.setStatus(updatedCar.getStatus());
+
+                Car savedCar = carRepository.save(existingCar);
+                carDto.setCar(savedCar);
+                carDto.setStatusCode(200);
+                carDto.setMessage("Updated Car Status successfully");
+            } else {
+                carDto.setStatusCode(404);
+                carDto.setMessage("Car not found for update");
+            }
+        } catch (Exception e) {
+            carDto.setStatusCode(500);
+            carDto.setMessage("Error occurred while updating Car: " + e.getMessage());
+        }
         return carDto;
     }
 
