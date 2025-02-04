@@ -19,6 +19,7 @@ public class Car {
     private String producedYear;
     private String transmission;
     private String registeredYear;
+    @Id
     private String vehicleNumber;
     private String status;
 
