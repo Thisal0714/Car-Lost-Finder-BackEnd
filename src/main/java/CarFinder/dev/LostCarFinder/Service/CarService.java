@@ -88,7 +88,7 @@ public class CarService {
     public CarDto updateCar(String vehicleNumber, Car updatedCar) {
         CarDto carDto = new CarDto();;
         try {
-            Optional<Car> carOptional = carRepository.findByVehicleNumber(vehicleNumber);
+            Optional<Car> carOptional = carRepository.findById(vehicleNumber);
             if (carOptional.isPresent()) {
                 Car existingCar = carOptional.get();
                 existingCar.setStatus(updatedCar.getStatus());
