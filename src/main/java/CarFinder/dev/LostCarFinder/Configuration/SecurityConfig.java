@@ -39,6 +39,7 @@ public class SecurityConfig {
                         .requestMatchers("/adminuser/**").hasAnyAuthority("ADMIN", "USER")
                         .requestMatchers("/registerCar").permitAll()
                         .requestMatchers("/get-carr/{ownerId}").permitAll()
+                        .requestMatchers("/update/{vehicleNumber}").permitAll()
                         .anyRequest().authenticated())
                 .sessionManagement(manager->manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider()).addFilterBefore(
