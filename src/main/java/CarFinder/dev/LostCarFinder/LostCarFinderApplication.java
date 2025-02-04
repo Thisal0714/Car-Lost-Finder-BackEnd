@@ -12,6 +12,7 @@ public class LostCarFinderApplication {
 		SpringApplication.run(LostCarFinderApplication.class, args);
 	}
 
+
 	@Bean
 	public ModelMapper modelMapper(){
 		return new ModelMapper();
