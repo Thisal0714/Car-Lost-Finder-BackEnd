@@ -31,6 +31,8 @@ public class CarService {
             ourCar.setRegisteredYear(registrationRequest.getRegisteredYear());
             ourCar.setTransmission(registrationRequest.getTransmission());
             ourCar.setVehicleNumber(registrationRequest.getVehicleNumber());
+            ourCar.setEmergencyContact(registrationRequest.getEmergencyContact());
+            ourCar.setVisualModifications(registrationRequest.getVisualModifications());
 
             ourCar.setStatus(Optional.ofNullable(registrationRequest.getStatus())
                     .map(Status::valueOf)

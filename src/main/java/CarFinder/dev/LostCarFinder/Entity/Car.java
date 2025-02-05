@@ -24,6 +24,24 @@ public class Car {
     private String vehicleNumber;
     private String stolenLocation;
     private LocalDateTime stolenTimeStamp;
+    private String emergencyContact;
+    private String visualModifications;
+
+    public String getEmergencyContact() {
+        return emergencyContact;
+    }
+
+    public void setEmergencyContact(String emergencyContact) {
+        this.emergencyContact = emergencyContact;
+    }
+
+    public String getVisualModifications() {
+        return visualModifications;
+    }
+
+    public void setVisualModifications(String visualModifications) {
+        this.visualModifications = visualModifications;
+    }
 
     public LocalDateTime getStolenTimeStamp() {
         return stolenTimeStamp;
@@ -136,7 +154,11 @@ public class Car {
                 ", transmission='" + transmission + '\'' +
                 ", registeredYear='" + registeredYear + '\'' +
                 ", vehicleNumber='" + vehicleNumber + '\'' +
-                ", status='" + status + '\'' +
+                ", stolenLocation='" + stolenLocation + '\'' +
+                ", stolenTimeStamp=" + stolenTimeStamp +
+                ", emergency='" + emergencyContact + '\'' +
+                ", modifications='" + visualModifications + '\'' +
+                ", status=" + status +
                 '}';
     }
 }

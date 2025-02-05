@@ -31,6 +31,25 @@ public class CarDto {
     private List<Car> cars;
     private String stolenLocation;
     private String stolenTimeStamp;
+    private String emergencyContact;
+    private String visualModifications;
+
+
+    public String getEmergencyContact() {
+        return emergencyContact;
+    }
+
+    public void setEmergencyContact(String emergencyContact) {
+        this.emergencyContact = emergencyContact;
+    }
+
+    public String getVisualModifications() {
+        return visualModifications;
+    }
+
+    public void setVisualModifications(String visualModifications) {
+        this.visualModifications = visualModifications;
+    }
 
     public String getStolenTimeStamp() {
         return stolenTimeStamp;

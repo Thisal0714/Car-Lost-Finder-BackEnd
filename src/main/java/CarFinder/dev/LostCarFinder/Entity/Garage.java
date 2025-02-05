@@ -5,19 +5,19 @@ import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@NoArgsConstructor
-@AllArgsConstructor
+
 @Document(collection = "Garages")
 @Data
 @Getter
 @Setter
 public class Garage {
-    @Id
+
     private String ownerId;
     private String garageName;
     private String garageAddress;
     private String garageHome;
     private String garageSpecialization;
+
 
     public String getOwnerId() {
         return ownerId;
@@ -57,5 +57,16 @@ public class Garage {
 
     public void setGarageSpecialization(String garageSpecialization) {
         this.garageSpecialization = garageSpecialization;
+    }
+
+    @Override
+    public String toString() {
+        return "Garage{" +
+                "ownerId='" + ownerId + '\'' +
+                ", garageName='" + garageName + '\'' +
+                ", garageAddress='" + garageAddress + '\'' +
+                ", garageHome='" + garageHome + '\'' +
+                ", garageSpecialization='" + garageSpecialization + '\'' +
+                '}';
     }
 }

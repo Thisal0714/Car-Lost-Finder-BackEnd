@@ -44,7 +44,9 @@ public class SecurityConfig {
                         .requestMatchers("/update/{userId}").permitAll()
                         .requestMatchers("/update-status/{carId}").permitAll()
                         .requestMatchers("/lostCars").permitAll()
-
+                        .requestMatchers("/registerGarage").permitAll()
+                        .requestMatchers("/get-garage/{ownerId}").permitAll()
+                        .requestMatchers("/garagesNear/{garageHome}").permitAll()
                         .anyRequest().authenticated())
                 .sessionManagement(manager->manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider()).addFilterBefore(
