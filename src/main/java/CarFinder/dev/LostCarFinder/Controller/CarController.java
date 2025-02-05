@@ -55,5 +55,18 @@ public class CarController {
             return ResponseEntity.status(500).body(errorResponse);
         }
     }
+    @GetMapping("/lostCars")
+    public ResponseEntity<CarDto> searchCarByStatus(String status) {
+        status="LOST";
+        CarDto carDto = carService.searchCarByStatus(status);
+
+        if (carDto.getStatusCode() == 200) {
+            return ResponseEntity.ok(carDto);
+        } else if (carDto.getStatusCode() == 404) {
+            return ResponseEntity.status(404).body(carDto);
+        } else {
+            return ResponseEntity.status(500).body(carDto);
+        }
+    }
 
 }

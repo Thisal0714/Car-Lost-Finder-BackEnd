@@ -43,6 +43,8 @@ public class SecurityConfig {
                         .requestMatchers("/getAllReviews").permitAll()
                         .requestMatchers("/update/{userId}").permitAll()
                         .requestMatchers("/update-status/{carId}").permitAll()
+                        .requestMatchers("/lostCars").permitAll()
+
                         .anyRequest().authenticated())
                 .sessionManagement(manager->manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider()).addFilterBefore(

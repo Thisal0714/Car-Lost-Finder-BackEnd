@@ -120,4 +120,32 @@ public class CarService {
         }
         return carDto;
     }
+
+    public CarDto searchCarByStatus(String status){
+        CarDto carDto=new CarDto();
+        try {
+            List<Car> cars = carRepository.findByStatus(status);
+
+            if (cars.isEmpty()) {
+                throw new NoSuchElementException("No cars found for owner with status '" + status + "'");
+            }
+
+            carDto.setCars(cars);
+            carDto.setStatusCode(200);
+            carDto.setMessage("Cars for status '" + status + "' found successfully");
+
+        } catch (NoSuchElementException e) {
+            carDto.setStatusCode(404);
+            carDto.setError("Not Found");
+            carDto.setMessage(e.getMessage());
+
+        } catch (Exception e) {
+            carDto.setStatusCode(500);
+            carDto.setError("Internal Server Error");
+            carDto.setMessage("An unexpected error occurred: " + e.getMessage());
+        }
+        System.out.println(carDto);
+        return carDto;
+    }
+
 }

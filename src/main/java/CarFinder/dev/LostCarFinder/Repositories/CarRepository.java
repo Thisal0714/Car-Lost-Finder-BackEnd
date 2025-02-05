@@ -10,5 +10,6 @@ public interface CarRepository extends MongoRepository<Car,String> {
 
     List<Car> findByOwnerId(String ownerId);
     Optional<Car> findByVehicleNumber(String carId);
+    List<Car> findByStatus(String status);
 
 }
