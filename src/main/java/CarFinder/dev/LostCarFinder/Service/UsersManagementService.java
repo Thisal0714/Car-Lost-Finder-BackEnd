@@ -172,7 +172,10 @@ public class UsersManagementService {
                 existingUser.setEmail(updatedUser.getEmail());
                 existingUser.setName(updatedUser.getName());
                 existingUser.setCity(updatedUser.getCity());
-                existingUser.setRole(updatedUser.getRole());
+                existingUser.setJob(updatedUser.getJob());
+                existingUser.setPhone(updatedUser.getPhone());
+                existingUser.setNic(updatedUser.getNic());
+
 
                 // Check if password is present in the request
                 if (updatedUser.getPassword() != null && !updatedUser.getPassword().isEmpty()) {

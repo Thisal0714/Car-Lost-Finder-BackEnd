@@ -1,16 +1,16 @@
 package CarFinder.dev.LostCarFinder.Entity;
 
-
-import lombok.*;
+import CarFinder.dev.LostCarFinder.Lists.Status;
+import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-
 @Data
-
 @Document(collection = "Cars")
 public class Car {
 
+    @Id
+    private String id;
 
     private String ownerId;
     private String ownerName;
@@ -20,15 +20,15 @@ public class Car {
     private String transmission;
     private String registeredYear;
     private String vehicleNumber;
-    private String status;
 
+    private Status status = Status.ACTIVE;
 
-    public String getStatus() {
-        return status;
+    public String getId() {
+        return id;
     }
 
-    public void setStatus(String status) {
-        this.status = "ACTIVE";
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getVehicleNumber() {
@@ -95,10 +95,19 @@ public class Car {
         this.registeredYear = registeredYear;
     }
 
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
     @Override
     public String toString() {
         return "Car{" +
-                "ownerId='" + ownerId + '\'' +
+                "id='" + id + '\'' +
+                ", ownerId='" + ownerId + '\'' +
                 ", ownerName='" + ownerName + '\'' +
                 ", brand='" + brand + '\'' +
                 ", model='" + model + '\'' +
