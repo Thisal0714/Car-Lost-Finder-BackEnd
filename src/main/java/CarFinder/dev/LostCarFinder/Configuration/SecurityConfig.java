@@ -38,7 +38,7 @@ public class SecurityConfig {
                         .requestMatchers("/user/**").hasAnyAuthority("USER")
                         .requestMatchers("/adminuser/**").hasAnyAuthority("ADMIN", "USER")
                         .requestMatchers("/registerCar").permitAll()
-                        .requestMatchers("/get-carr/{ownerId}").permitAll()
+                        .requestMatchers("/get-car/{ownerId}").permitAll()
                         .requestMatchers("/addReview").permitAll()
                         .requestMatchers("/getAllReviews").permitAll()
                         .requestMatchers("/update/{userId}").permitAll()

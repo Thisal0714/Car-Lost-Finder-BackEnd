@@ -5,6 +5,8 @@ import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.time.LocalDateTime;
+
 @Data
 @Document(collection = "Cars")
 public class Car {
@@ -20,8 +22,27 @@ public class Car {
     private String transmission;
     private String registeredYear;
     private String vehicleNumber;
+    private String stolenLocation;
+    private LocalDateTime stolenTimeStamp;
+
+    public LocalDateTime getStolenTimeStamp() {
+        return stolenTimeStamp;
+    }
+
+    public void setStolenTimeStamp(LocalDateTime stolenTimeStamp) {
+        this.stolenTimeStamp = stolenTimeStamp;
+    }
 
     private Status status = Status.ACTIVE;
+
+
+    public String getStolenLocation() {
+        return stolenLocation;
+    }
+
+    public void setStolenLocation(String stolenLocation) {
+        this.stolenLocation = stolenLocation;
+    }
 
     public String getId() {
         return id;

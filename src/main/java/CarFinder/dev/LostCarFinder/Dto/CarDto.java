@@ -29,6 +29,24 @@ public class CarDto {
     private String status;
     private Car car;
     private List<Car> cars;
+    private String stolenLocation;
+    private String stolenTimeStamp;
+
+    public String getStolenTimeStamp() {
+        return stolenTimeStamp;
+    }
+
+    public void setStolenTimeStamp(String stolenTimeStamp) {
+        this.stolenTimeStamp = stolenTimeStamp;
+    }
+
+    public String getStolenLocation() {
+        return stolenLocation;
+    }
+
+    public void setStolenLocation(String stolenLocation) {
+        this.stolenLocation = stolenLocation;
+    }
 
     public List<Car> getCars() {
         return cars;

@@ -19,7 +19,7 @@ public class CarController {
         return ResponseEntity.ok(carService.registerCar(carDto));
     }
 
-    @GetMapping("/get-carr/{ownerId}")
+    @GetMapping("/get-car/{ownerId}")
     public ResponseEntity<CarDto> getCarsByOwnerId(@PathVariable String ownerId) {
         CarDto carDto = carService.getCarsByOwnerId(ownerId);
 
@@ -39,7 +39,7 @@ public class CarController {
             Status newStatus = Status.valueOf(statusUpdateDto.getStatus().toUpperCase());
 
             // Call the service to update the status
-            CarDto response = carService.updateCarStatus(carId, newStatus);
+            CarDto response = carService.updateCarStatus(carId, newStatus, statusUpdateDto.getNewLocation());
 
             // Return the updated response
             return ResponseEntity.status(response.getStatusCode()).body(response);

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -35,10 +36,11 @@ public class CarService {
                     .map(Status::valueOf)
                     .orElse(Status.ACTIVE));
 
+            // Initialize stolenLocation and stolenTimestamp as null
+            ourCar.setStolenLocation(null);
+            ourCar.setStolenTimeStamp(null);
 
-            // Save the car entity to the repository
             Car ourCarResult = carRepository.save(ourCar);
-
 
             resp.setCar(ourCarResult);
             resp.setMessage("Car Saved Successfully");
@@ -78,38 +80,33 @@ public class CarService {
         return carDto;
     }
 
-
     @Transactional
-    public CarDto updateCarStatus(String carId, Status newStatus) {
+    public CarDto updateCarStatus(String carId, Status newStatus, String newLocation) {
         CarDto carDto = new CarDto();
         try {
-            // Log the incoming carId
             System.out.println("Attempting to update car with ID: " + carId);
 
-            // Find the car by ID
-            Optional<Car> optionalCar = carRepository.findById(carId);
+            Optional<Car> optionalCar = carRepository.findByVehicleNumber(carId);
 
             if (optionalCar.isPresent()) {
                 Car car = optionalCar.get();
 
-                // Log current status before update
                 System.out.println("Current status of car: " + car.getStatus());
 
-                // Update the car's status
                 car.setStatus(newStatus);
 
-                // Save the updated car entity
-                Car updatedCar = carRepository.save(car);  // This will save the existing car record with the updated status
+                // Update stolenLocation and stolenTimestamp when updating
+                car.setStolenLocation(newLocation);
+                car.setStolenTimeStamp(LocalDateTime.now());
 
-                // Log updated status
+                Car updatedCar = carRepository.save(car);
+
                 System.out.println("Updated status of car: " + updatedCar.getStatus());
 
-                // Return the updated car in the response
                 carDto.setCar(updatedCar);
                 carDto.setStatusCode(200);
-                carDto.setMessage("Car status updated successfully");
+                carDto.setMessage("Car status, stolen location, and timestamp updated successfully.");
             } else {
-                // If the car isn't found, log this and send a 404 response
                 carDto.setStatusCode(404);
                 carDto.setError("Not Found");
                 carDto.setMessage("Car with ID '" + carId + "' not found");
@@ -123,6 +120,4 @@ public class CarService {
         }
         return carDto;
     }
-
-
 }
