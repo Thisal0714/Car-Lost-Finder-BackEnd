@@ -17,7 +17,16 @@ public class Garage {
     private String garageAddress;
     private String garageHome;
     private String garageSpecialization;
+    private String garageHotline;
 
+
+    public String getGarageHotline() {
+        return garageHotline;
+    }
+
+    public void setGarageHotline(String garageHotline) {
+        this.garageHotline = garageHotline;
+    }
 
     public String getOwnerId() {
         return ownerId;

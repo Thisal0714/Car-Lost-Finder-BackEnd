@@ -28,7 +28,15 @@ public class GarageDto {
     private String garageSpecialization;
     private List<Garage> garages;
     private Garage garage;
+    private String garageHotline;
 
+    public String getGarageHotline() {
+        return garageHotline;
+    }
+
+    public void setGarageHotline(String garageHotline) {
+        this.garageHotline = garageHotline;
+    }
 
     public Garage getGarage() {
         return garage;

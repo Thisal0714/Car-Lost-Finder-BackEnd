@@ -38,6 +38,7 @@ public class GarageService {
             ourGarage.setGarageHome(registrationRequest.getGarageHome());
             ourGarage.setGarageName(registrationRequest.getGarageName());
             ourGarage.setGarageSpecialization(registrationRequest.getGarageSpecialization());
+            ourGarage.setGarageHotline(registrationRequest.getGarageHotline());
 
             Garage ourGarageResult = garageRepository.save(ourGarage);
 
