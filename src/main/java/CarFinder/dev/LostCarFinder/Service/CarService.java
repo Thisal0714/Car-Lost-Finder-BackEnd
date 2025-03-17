@@ -1,7 +1,9 @@
 package CarFinder.dev.LostCarFinder.Service;
 
 import CarFinder.dev.LostCarFinder.Dto.CarDto;
+import CarFinder.dev.LostCarFinder.Dto.ReqRes;
 import CarFinder.dev.LostCarFinder.Entity.Car;
+import CarFinder.dev.LostCarFinder.Entity.User;
 import CarFinder.dev.LostCarFinder.Lists.Status;
 import CarFinder.dev.LostCarFinder.Repositories.CarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -150,4 +152,22 @@ public class CarService {
         return carDto;
     }
 
+    public CarDto deleteCar(String carId) {
+        CarDto carDto = new CarDto();
+        try {
+            Optional<Car> carOptional = carRepository.findById(carId);
+            if (carOptional.isPresent()) {
+                carRepository.deleteById(carId);
+                carDto.setStatusCode(200);
+                carDto.setMessage("User deleted successfully");
+            } else {
+                carDto.setStatusCode(404);
+                carDto.setMessage("User not found for deletion");
+            }
+        } catch (Exception e) {
+            carDto.setStatusCode(500);
+            carDto.setMessage("Error occurred while deleting user: " + e.getMessage());
+        }
+        return carDto;
+    }
 }

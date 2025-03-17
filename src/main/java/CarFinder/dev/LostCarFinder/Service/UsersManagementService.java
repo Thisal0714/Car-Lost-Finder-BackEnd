@@ -31,6 +31,13 @@ public class UsersManagementService {
         ReqRes resp = new ReqRes();
 
         try {
+            Optional<User> existingUser = usersRepo.findByEmail(registrationRequest.getEmail());
+            if (existingUser.isPresent()) {
+                resp.setStatusCode(400); // Bad request
+                resp.setMessage("Email already exists.");
+                return resp;
+            }
+
             User ourUser = new User();
             ourUser.setEmail(registrationRequest.getEmail());
             ourUser.setCity(registrationRequest.getCity());
@@ -174,7 +181,7 @@ public class UsersManagementService {
                 existingUser.setCity(updatedUser.getCity());
                 existingUser.setJob(updatedUser.getJob());
                 existingUser.setPhone(updatedUser.getPhone());
-                existingUser.setNic(updatedUser.getNic());
+
 
 
                 // Check if password is present in the request
